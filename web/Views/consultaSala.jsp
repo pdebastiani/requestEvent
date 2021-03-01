@@ -4,6 +4,7 @@
     Author     : Paulo Sergio Debastiani
 --%>
 
+<%@page import="java.sql.ResultSet"%>
 <%@page import="Model.Cafe"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -23,10 +24,9 @@
     if (request.getParameter("msg") != null) {  //recupera a msg do Controller
         msg = request.getParameter("msg");
     }
-    
-    Sala sala = new Sala();                         // recupera numa lista os Alunos
-    List<Sala> salas = new ArrayList<>();
-    salas = sala.consultar();
+         
+    Sala sala = new Sala();                         // recupera num ResultSet os Alunos
+    ResultSet rs = sala.consultarInner();
 %>
 
 <div class="header">
@@ -47,6 +47,7 @@
 
     <div class="col-6 col-s-9">     
         <h3>Listagem das Salas de treinamento</h3>
+      
         <table class="container6">
             <thead>
                 <th>Sala</th>
@@ -56,15 +57,13 @@
                 <th>Excluir</th>
             </thead> 
             <tbody>
-               <% Cafe cafe = new Cafe(); %>
-               
-               <% for (Sala s : salas) {%>
+                <% while (rs.next()) {%>
                     <tr>
-                        <td><%out.write(s.getSala()) ;%></td>
-                        <td><%out.write("" + s.getLotacao()) ;%></td>
-                        <td><%out.write("" + s.getIdCafe()) ;%></td>
-                        <td><%out.write("<a href=./cadastroEditaSala.jsp?id=" + s.getId() + ">Editar</a>");%></td>   
-                        <td><%out.write("<a href=../Controller/excluirSala.jsp?id=" + s.getId() + ">Excluir</a>");%></td>   
+                        <td><%out.write(rs.getString("sala"));%></td>
+                        <td><%out.write(rs.getString("lotacao"));%></td>
+                        <td><%out.write(rs.getString("cafe"));%></td>
+                        <td><%out.write("<a href=./cadastroEditaSala.jsp?id=" + rs.getString("id") + ">Editar</a>");%></td>
+                        <td><%out.write("<a href=../Controller/excluirSala.jsp?id=" + rs.getString("id") + ">Excluir</a>");%></td>
                     </tr>
                 <%}%>
             </tbody>
