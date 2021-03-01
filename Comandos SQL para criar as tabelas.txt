@@ -1,0 +1,32 @@
+create table aluno (
+id serial primary key,
+nome varchar(50) not null,
+sobrenome varchar(50) not null,
+idSala1 int,
+idSala2 int
+);
+
+create table sala (
+id serial primary key,
+sala varchar(30) not null,
+lotacao int not null,
+idCafe int
+);
+
+create table cafe (
+id serial primary key,
+cafe varchar(30) not null,
+lotacao int not null
+);
+
+alter table aluno
+add constraint fk_idSala1 foreign key(idSala1)
+references sala(id);
+
+alter table aluno
+add constraint fk_idSala2 foreign key(idSala2)
+references sala(id);
+
+alter table sala
+add constraint fk_idCafe foreign key(idCafe)
+references cafe(id);
