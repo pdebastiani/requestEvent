@@ -123,11 +123,10 @@ public class Aluno {
         
     public ResultSet consultarInner() {
         Connection con = Conexao.conectar();
-        String sql = "select a.nome, s.sala, c.cafe " +
-                "from aluno a, sala s, cafe c " +
+        String sql = "select a.id, a.nome || ' ' || a.sobrenome nomecompleto, " +
+                "s.sala etapa1, a.idsala2 etapa2 " +
+                "from aluno a, sala s " +
                 "where a.idSala1 = s.id " +
-                "and a.idSala2 = s.id " +
-                "and s.idCafe = c.id " +
                 "order by a.nome;";
         ResultSet rs = null;
         try {

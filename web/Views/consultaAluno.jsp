@@ -26,15 +26,9 @@
         msg = request.getParameter("msg");
     }
     
-    
-    Aluno aluno = new Aluno();                  // recupera numa lista os Alunos
-    List<Aluno> alunos = new ArrayList<>();
-    alunos = aluno.consultar();
-    
-    //Sala sala = new Sala();
-    //List<Sala> salas = new ArrayList<>();
-    //salas = sala.consultar();
-%>
+    Aluno aluno = new Aluno();                  // recupera num ResultSet os Alunos
+    ResultSet rs = aluno.consultarInner();
+ %>
 
 <div class="header">
     <h1>Treinamento 'X'</h1>
@@ -56,20 +50,20 @@
         <h3>Listagem dos Alunos</h3>
         <table class="container6">
             <thead>
-                <th>Nome</th>
+                <th>Nome Completo</th>
                 <th>Etapa 1</th>
                 <th>Etapa 2</th>
                 <th>Editar</th>
                 <th>Excluir</th>
             </thead> 
             <tbody>
-               <% for (Aluno a : alunos) {%>
+               <% while (rs.next()) {%>
                     <tr>
-                        <td><%out.write(a.getNome() + " " + a.getSobrenome()) ;%></td>
-                        <td><%out.write("" + a.getIdSala1()) ;%></td>
-                        <td><%out.write("" + a.getIdSala2()) ;%></td>
-                        <td><%out.write("<a href=./cadastroEditaAluno.jsp?id=" + a.getId() + ">Editar</a>");%></td>   
-                        <td><%out.write("<a href=../Controller/excluirAluno.jsp?id=" + a.getId() + ">Excluir</a>");%></td>   
+                        <td><%out.write(rs.getString("nomecompleto"));%></td>
+                        <td><%out.write(rs.getString("etapa1"));%></td>
+                        <td><%out.write(rs.getString("etapa2"));%></td>
+                        <td><%out.write("<a href=./cadastroEditaAluno.jsp?id=" + rs.getString("id") + ">Editar</a>");%></td>   
+                        <td><%out.write("<a href=../Controller/excluirAluno.jsp?id=" + rs.getString("id") + ">Excluir</a>");%></td>   
                     </tr>
                 <%}%>
             </tbody>
