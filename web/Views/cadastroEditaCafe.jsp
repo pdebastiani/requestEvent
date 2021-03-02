@@ -47,6 +47,7 @@
         <h2>Cadastro Espaços Cafés</h2>
         <form action="../Controller/recebeEditaDadosCafe.jsp" method="POST">
             <label for="cafe">*Nome do Espaço do Café</label><br>
+            <input type="hidden" id="id" name="id" value="<%out.write(""+cafe.getId());%>" >
             <input type="text" id="cafe" name="cafe" value="<%out.write(cafe.getCafe());%>"
                    maxlength="30" ><br>
             <label for="lotacao">*Lotação</label><br>

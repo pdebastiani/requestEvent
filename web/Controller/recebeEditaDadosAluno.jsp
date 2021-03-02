@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Aluno"%>
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     Aluno aluno = new Aluno();
     aluno.setId(Integer.parseInt(request.getParameter("id")));
@@ -24,5 +24,6 @@
     }
     
     //response.sendRedirect("informacao.jsp?msg=" + msg);
-    response.sendRedirect("../Views/cadastroEditaAluno.jsp?msg=" + msg);
+    //response.sendRedirect("../Views/cadastroEditaAluno.jsp?msg=" + msg);
+    response.sendRedirect("../Views/consultaAluno.jsp?msg=" + msg);
 %>

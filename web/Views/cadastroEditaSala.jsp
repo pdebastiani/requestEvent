@@ -53,6 +53,7 @@
         <h2>Cadastro Salas de Treinamento</h2>
         <form action="../Controller/recebeEditaDadosSala.jsp" method="POST">
             <label for="sala">*Nome da Sala</label><br>
+            <input type="hidden" id="id" named="id" value="<%out.write(""+id);%>">
             <input type="text" id="sala" name="sala" required="true"
                    maxlength="30" value="<%out.write(sala.getSala());%>"><br>
             <label for="lotacao">*Lotação</label><br>

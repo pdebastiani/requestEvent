@@ -7,7 +7,7 @@
 <%@page import="Model.Cafe"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     Cafe cafe = new Cafe();
     cafe.setId(Integer.parseInt(request.getParameter("id")));
@@ -21,5 +21,6 @@
     }
     
     //response.sendRedirect("informacao.jsp?msg=" + msg);
-    response.sendRedirect("../Views/cadastroEditaCafe.jsp?msg=" + msg);
+    //response.sendRedirect("../Views/cadastroEditaCafe.jsp?msg=" + msg);
+    response.sendRedirect("../Views/consultaCafe.jsp?msg=" + msg);    
 %>

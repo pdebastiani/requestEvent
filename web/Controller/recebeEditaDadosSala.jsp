@@ -7,7 +7,7 @@
 <%@page import="Model.Sala"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     Sala sala = new Sala();
     sala.setId(Integer.parseInt(request.getParameter("id")));
@@ -22,5 +22,6 @@
     }
     
     //response.sendRedirect("informacao.jsp?msg=" + msg);
-    response.sendRedirect("../Views/cadastroEditaSala.jsp?msg=" + msg);
+    //response.sendRedirect("../Views/cadastroEditaSala.jsp?msg=" + msg);
+    response.sendRedirect("../Views/consultaSala.jsp?msg=" + msg);
 %>
