@@ -9,7 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.Sala"%>
-<%@page contentType="text/html charset-UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,27 +47,32 @@
 
     <div class="col-6 col-s-9">     
         <h3>Listagem das Salas de treinamento</h3>
-      
-        <table class="container6">
-            <thead>
-                <th>Sala</th>
-                <th>Lotacao</th>
-                <th>Coffe</th>
-                <th>Editar</th>
-                <th>Excluir</th>
-            </thead> 
-            <tbody>
-                <% while (rs.next()) {%>
-                    <tr>
-                        <td><%out.write(rs.getString("sala"));%></td>
-                        <td><%out.write(rs.getString("lotacao"));%></td>
-                        <td><%out.write(rs.getString("cafe"));%></td>
-                        <td><%out.write("<a href=./cadastroEditaSala.jsp?id=" + rs.getString("id") + ">Editar</a>");%></td>
-                        <td><%out.write("<a href=../Controller/excluirSala.jsp?id=" + rs.getString("id") + ">Excluir</a>");%></td>
-                    </tr>
-                <%}%>
-            </tbody>
-        </table>
+        <% if (msg != "") {%>
+                <p class="sucesso"><img src="../imagens/sucesso.png" width="50px" height="50px"/>
+                    <% out.write(request.getParameter("msg")); %>
+                </p> 
+        <%} else {%>
+            <table class="container6">
+                <thead>
+                    <th>Sala</th>
+                    <th>Lotacao</th>
+                    <th>Coffe</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </thead> 
+                <tbody>
+                    <% while (rs.next()) {%>
+                        <tr>
+                            <td><%out.write(rs.getString("sala"));%></td>
+                            <td><%out.write(rs.getString("lotacao"));%></td>
+                            <td><%out.write(rs.getString("cafe"));%></td>
+                            <td><%out.write("<a href=./cadastroEditaSala.jsp?id=" + rs.getString("id") + ">Editar</a>");%></td>
+                            <td><%out.write("<a href=../Controller/excluirSala.jsp?id=" + rs.getString("id") + ">Excluir</a>");%></td>
+                        </tr>
+                    <%}%>
+                </tbody>
+            </table>
+        <%}%>
     </div>
     
 </div>

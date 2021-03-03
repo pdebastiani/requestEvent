@@ -7,7 +7,7 @@
 <%@page import="Model.Cafe"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html charset-UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,24 +46,30 @@
 
     <div class="col-6 col-s-9">     
         <h3>Listagem dos Espaços para Café</h3>
-        <table class="container6">
-            <thead>
-                <th>Cafe</th>
-                <th>Lotacao</th>
-                <th>Editar</th>
-                <th>Excluir</th>
-            </thead> 
-            <tbody>
-               <% for (Cafe c : cafes) {%>
-                    <tr>
-                        <td><%out.write(c.getCafe()) ;%></td>
-                        <td><%out.write("" + c.getLotacao()) ;%></td>
-                        <td><%out.write("<a href=./cadastroEditaCafe.jsp?id=" + c.getId() + ">Editar</a>");%></td>   
-                        <td><%out.write("<a href=../Controller/excluirCafe.jsp?id=" + c.getId() + ">Excluir</a>");%></td>   
-                    </tr>
-                <%}%>
-            </tbody>
-        </table>
+        <% if (msg != "") {%>
+                <p class="sucesso"><img src="../imagens/sucesso.png" width="50px" height="50px"/>
+                    <% out.write(request.getParameter("msg")); %>
+                </p> 
+        <%} else {%>
+            <table class="container6">
+                <thead>
+                    <th>Cafe</th>
+                    <th>Lotacao</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </thead> 
+                <tbody>
+                   <% for (Cafe c : cafes) {%>
+                        <tr>
+                            <td><%out.write(c.getCafe()) ;%></td>
+                            <td><%out.write("" + c.getLotacao()) ;%></td>
+                            <td><%out.write("<a href=./cadastroEditaCafe.jsp?id=" + c.getId() + ">Editar</a>");%></td>   
+                            <td><%out.write("<a href=../Controller/excluirCafe.jsp?id=" + c.getId() + ">Excluir</a>");%></td>   
+                        </tr>
+                    <%}%>
+                </tbody>
+            </table>
+        <%}%>
     </div>
     
 </div>

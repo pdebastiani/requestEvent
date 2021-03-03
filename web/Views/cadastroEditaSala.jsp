@@ -18,11 +18,6 @@
 </head>
 <body>
 <%
-    String msg = "";
-    if (request.getParameter("msg") != null) {  //recupera a msg do Controller
-        msg = request.getParameter("msg");
-    }
-    
     int id = Integer.parseInt(request.getParameter("id"));
     Sala sala = new Sala();
     if (id != 0) {                          // recupera opjeto Sala
@@ -53,7 +48,7 @@
         <h2>Cadastro Salas de Treinamento</h2>
         <form action="../Controller/recebeEditaDadosSala.jsp" method="POST">
             <label for="sala">*Nome da Sala</label><br>
-            <input type="hidden" id="id" named="id" value="<%out.write(""+id);%>">
+            <input type="hidden" id="id" name="id" value="<%out.write(""+sala.getId());%>">
             <input type="text" id="sala" name="sala" required="true"
                    maxlength="30" value="<%out.write(sala.getSala());%>"><br>
             <label for="lotacao">*Lotação</label><br>
@@ -71,8 +66,7 @@
                 <%}%>
             </select><br> 
             <input type="button" value="Alterar" onclick="validaDados()" /> &nbsp;
-            <input type="reset" value="Limpar" /><br>
-            <label><%out.write(msg);%></label> 
+            <input type="reset" value="Reset" /><br>
         </form> 
     </div>
 

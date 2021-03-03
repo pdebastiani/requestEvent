@@ -50,7 +50,7 @@
     int gravarIdSala1 = 0;                              // define qual sala sera gravada para cada Etapa
     int gravarIdSala2 = 0;
     String msg = "";
-    if ((vagasSala1 + vagasSala2) > 1) {                
+    if ((vagasSala1 + vagasSala2) > 0) {                
         if (vagasSala1 == 0) {
             gravarIdSala1 = idSala2;
             gravarIdSala2 = idSala2;

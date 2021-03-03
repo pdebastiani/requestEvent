@@ -46,6 +46,7 @@ public class Cafe {
             PreparedStatement stm = con.prepareStatement(sql);
             stm.setString(1, this.cafe);
             stm.setInt(2, this.lotacao);
+            stm.setInt(3, this.id);
             stm.execute();
         } catch (SQLException ex) {
             Logger.getLogger(Cafe.class.getName()).log(Level.SEVERE, null, ex);

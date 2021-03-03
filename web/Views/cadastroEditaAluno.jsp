@@ -18,11 +18,6 @@
 </head>
 <body>
 <%
-    String msg = "";
-    if (request.getParameter("msg") != null) {  //recupera a msg do Controller
-        msg = request.getParameter("msg");
-    }
-    
     int id = Integer.parseInt(request.getParameter("id"));
     Aluno aluno = new Aluno();
     if (id != 0) {                          // recupera opjeto Aluno
@@ -54,7 +49,7 @@
         
         <form action="../Controller/recebeEditaDadosAluno.jsp" method="POST">
             <label for="nome">*Nome SEM o sobrenome</label><br>
-            <input type="hidden" id="id" name="id" value="<%out.write("" + aluno.getId());%>" >
+            <input type="hidden" id="id" name="id" value="<%out.write("" + aluno.getId());%>">
             <input type="text" id="nome" name="nome" value="<%out.write(aluno.getNome());%>"
                    maxlength="50" ><br>
             <label for="sobrenome">*Sobrenome</label><br>
@@ -86,7 +81,6 @@
             </select><br> 
             <input type="button" value="Alterar" onclick="validaDados()"/> &nbsp;
             <input type="reset" value="Reset" /><br>
-            <label><%out.write(msg);%></label>
         </form> 
     </div>
 

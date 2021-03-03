@@ -50,6 +50,7 @@ public class Sala {
             stm.setString(1, this.sala);
             stm.setInt(2, this.lotacao);
             stm.setInt(3, this.idCafe);
+            stm.setInt(4, this.id);
             stm.execute();
         } catch (SQLException ex) {
             Logger.getLogger(Sala.class.getName()).log(Level.SEVERE, null, ex);

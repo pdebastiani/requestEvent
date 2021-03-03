@@ -10,16 +10,18 @@
 <%@page import="Model.Aluno"%>
 <%@page import="java.util.List"%>
 <%@page import="Model.Cafe"%>
-<%@page contentType="text/html charset-UTF-8" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Styles/estilos.css"> 
+    <link rel="stylesheet" href="../Styles/estilos.css">
     <title>cadastroSala</title>
 </head>
 <body>
+    
+
 <%
     String msg = "";
     if (request.getParameter("msg") != null) {  //recupera a msg do Controller
@@ -48,26 +50,34 @@
 
     <div class="col-6 col-s-9">     
         <h3>Listagem dos Alunos</h3>
-        <table class="container6">
-            <thead>
-                <th>Nome Completo</th>
-                <th>Etapa 1</th>
-                <th>Etapa 2</th>
-                <th>Editar</th>
-                <th>Excluir</th>
-            </thead> 
-            <tbody>
-               <% while (rs.next()) {%>
-                    <tr>
-                        <td><%out.write(rs.getString("nomecompleto"));%></td>
-                        <td><%out.write(rs.getString("etapa1"));%></td>
-                        <td><%out.write(rs.getString("etapa2"));%></td>
-                        <td><%out.write("<a href=./cadastroEditaAluno.jsp?id=" + rs.getString("id") + ">Editar</a>");%></td>   
-                        <td><%out.write("<a href=../Controller/excluirAluno.jsp?id=" + rs.getString("id") + ">Excluir</a>");%></td>   
-                    </tr>
-                <%}%>
-            </tbody>
-        </table>
+        <% if (msg != "") {%>
+        <p class="sucesso"><img src="../imagens/sucesso.png" width="50px" height="50px"/>
+                    <% out.write(request.getParameter("msg")); %>
+                </p> 
+        <%} else {%>
+            <table class="container6">
+                <thead>
+                    <th>Nome Completo</th>
+                    <th>Etapa 1</th>
+                    <th>Etapa 2</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
+                </thead> 
+                <tbody>
+                   <% while (rs.next()) {%>
+                        <tr>
+                            <td><%out.write(rs.getString("nomecompleto"));%></td>
+                            <td><%out.write(rs.getString("etapa1"));%></td>
+                            <td><%out.write(rs.getString("etapa2"));%></td>
+                            <td><%out.write("<a href=./cadastroEditaAluno.jsp?id=" + 
+                                    rs.getString("id") + ">Editar</a>");%></td>   
+                            <td><%out.write("<a href=../Controller/excluirAluno.jsp?id=" + 
+                                    rs.getString("id") + ">Excluir</a>");%></td>   
+                        </tr>
+                    <%}%>
+                </tbody>
+            </table>
+        <%}%>
     </div>
     
 </div>

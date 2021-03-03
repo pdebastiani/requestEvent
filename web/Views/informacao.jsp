@@ -15,32 +15,28 @@
 </head>
 <body>
 
-<div class="header">
-    <h1>Treinamento 'X'</h1>
-</div>
 
 <div class="row">
     <div class="col-3 col-s-3 menu">
-        <ul>
+        <!--<ul>
             <li><a class="link" href="../Views/cadastroCafe.jsp">Cadastro Espaços Café</a></li>
             <li><a class="link" href="../Views/cadastroSala.jsp">Cadastro Salas</a></li>
             <li><a class="link" href="../Views/cadastroAluno.jsp">Cadastro Alunos</a></li>
             <li><a class="link" href="../Views/consultaCafe.jsp">Consulta Espaços Café</a></li>
             <li><a class="link" href="../Views/consultaSala.jsp">Consulta Salas</a></li>
             <li><a class="link" href="../Views/consultaAluno.jsp">Consulta Alunos</a></li>
-        </ul>
+        </ul>-->
     </div>
 
     <div class="col-6 col-s-9">
-        <h2>Cadastro dos Alunos</h2>
-        <form action="../Controller/recebeDadosAluno.jsp" method="POST">
-            <label for="nome">*Nome SEM o sobrenome</label><br>
-            <input type="text" id="nome" name="nome" required="true"
-                   maxlength="50"><br>
-            <label for="sobrenome">*Sobrenome</label><br>
-            <input type="text" id="sobrenome" name="sobrenome" required="true"><br>
-            <input type="submit" value="Salvar">
-        </form> 
+        </div>
+            <p class="sucesso"><img src="imagens/sucesso.png" width="50px" height="50px"/> 
+                <%
+                    out.write(request.getParameter("msg"));
+                    
+                %>
+            </p> 
+        </div>  
     </div>
 
     <div class="col-3 col-s-12">

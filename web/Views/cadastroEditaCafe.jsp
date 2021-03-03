@@ -16,11 +16,6 @@
 </head>
 <body>
 <%
-    String msg = "";
-    if (request.getParameter("msg") != null) {      // recupera msg do Controller
-        msg = request.getParameter("msg");
-    }
-
     int id = Integer.parseInt(request.getParameter("id"));
     Cafe cafe = new Cafe();
     if (id != 0) {                                  // recupera objeto Cafe
@@ -47,14 +42,13 @@
         <h2>Cadastro Espaços Cafés</h2>
         <form action="../Controller/recebeEditaDadosCafe.jsp" method="POST">
             <label for="cafe">*Nome do Espaço do Café</label><br>
-            <input type="hidden" id="id" name="id" value="<%out.write(""+cafe.getId());%>" >
+            <input type="hidden" id="id" name="id" value="<%out.write(""+cafe.getId());%>">
             <input type="text" id="cafe" name="cafe" value="<%out.write(cafe.getCafe());%>"
                    maxlength="30" ><br>
             <label for="lotacao">*Lotação</label><br>
             <input type="number" id="lotacao" name="lotacao" value="<%out.write(""+cafe.getLotacao());%>" ><br>
             <input type="button" value="Alterar" onclick="validaDados()" /> &nbsp;
-            <input type="reset" value="Limpar" /><br>
-            <label><%out.write(msg);%></label> 
+            <input type="reset" value="Reset" /><br>
         </form> 
     </div>
 
