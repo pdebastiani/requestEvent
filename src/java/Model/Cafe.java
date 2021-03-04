@@ -116,7 +116,7 @@ public class Cafe {
                 "where a.idSala1 = s.id " +
                 "and a.idSala2 = s.id " +
                 "and s.idCafe = c.id " +
-                "order by c.cafe;";
+                "order by c.id;";
         ResultSet rs = null;
         try {
             PreparedStatement stm = con.prepareStatement(sql);

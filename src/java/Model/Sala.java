@@ -120,7 +120,7 @@ public class Sala {
         String sql = "select s.id, s.sala, s.lotacao, c.cafe " +
                 "from sala s, cafe c " +
                 "where s.idCafe = c.id " +
-                "order by s.sala;";
+                "order by s.id;";
         ResultSet rs = null;
         try {
             PreparedStatement stm = con.prepareStatement(sql);

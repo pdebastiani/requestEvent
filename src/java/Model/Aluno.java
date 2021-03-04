@@ -127,7 +127,7 @@ public class Aluno {
                 "s.sala etapa1, a.idsala2 etapa2 " +
                 "from aluno a, sala s " +
                 "where a.idSala1 = s.id " +
-                "order by a.nome;";
+                "order by a.id;";
         ResultSet rs = null;
         try {
             PreparedStatement stm = con.prepareStatement(sql);

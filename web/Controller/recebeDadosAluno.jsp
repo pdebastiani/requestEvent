@@ -53,10 +53,10 @@
     if ((vagasSala1 + vagasSala2) > 0) {                
         if (vagasSala1 == 0) {
             gravarIdSala1 = idSala2;
-            gravarIdSala2 = idSala2;
+            gravarIdSala2 = idSala1;
         } else if (vagasSala2 == 0) {
             gravarIdSala1 = idSala1;
-            gravarIdSala2 = idSala1;
+            gravarIdSala2 = idSala2;
         } else if (((totalSala1 + totalSala2) % 2) == 0) {   // define se o total de alunos no momento é par ou ímpar
             gravarIdSala1 = idSala1;
             gravarIdSala2 = idSala2;
