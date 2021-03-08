@@ -37,39 +37,37 @@
         } else {
             totalSala2++;
         }
-        /*if (x.getIdSala2() == idSala2) {
-            totalSala2++;
-        } else {
-            totalSala1++;
-        }*/
     }
-    
+        
     int vagasSala1 = (lotacaoSala1 - totalSala1);       // identifica os totais de vagas disponives por Sala 
-    int vagasSala2 = (lotacaoSala2 - totalSala2);    
+    int vagasSala2 = (lotacaoSala2 - totalSala2); 
+    int totalAlunos = (totalSala1 + totalSala2);
     
-    int gravarIdSala1 = 0;                              // define qual sala sera gravada para cada Etapa
-    int gravarIdSala2 = 0;
+    int idSala1Etapa1 = 0;                              
     String msg = "";
-    if ((vagasSala1 + vagasSala2) > 0) {                
-        if (vagasSala1 == 0) {
-            gravarIdSala1 = idSala2;
-            gravarIdSala2 = idSala1;
-        } else if (vagasSala2 == 0) {
-            gravarIdSala1 = idSala1;
-            gravarIdSala2 = idSala2;
-        } else if (((totalSala1 + totalSala2) % 2) == 0) {   // define se o total de alunos no momento é par ou ímpar
-            gravarIdSala1 = idSala1;
-            gravarIdSala2 = idSala2;
+    if ((vagasSala1 + vagasSala2) > 0) {                // Verifica se tem vagas
+        if ((totalAlunos % 2) == 0) {                   // define qual Sala será atribuida para Etapa 1
+            idSala1Etapa1 = idSala1;
         } else {
-            gravarIdSala1 = idSala2;
-            gravarIdSala2 = idSala1;
+            idSala1Etapa1 = idSala2;
+        }
+        
+        int idSala2Etapa2 = 0;
+        boolean escolhaDaSala = false;
+        for (int i = 1; i < totalAlunos; i+=2) {        // define qual Sala será atribuida para Etapa 2
+            escolhaDaSala = (!escolhaDaSala);
+        }
+        if (escolhaDaSala) {
+            idSala2Etapa2 = idSala2;
+        } else {
+            idSala2Etapa2 = idSala1;
         }
         
         Aluno aluno = new Aluno();                     // grava dados do Aluno no BD
         aluno.setNome(request.getParameter("nome"));
         aluno.setSobrenome(request.getParameter("sobrenome"));
-        aluno.setIdSala1(gravarIdSala1);
-        aluno.setIdSala2(gravarIdSala2);
+        aluno.setIdSala1(idSala1Etapa1);
+        aluno.setIdSala2(idSala2Etapa2);
         if (aluno.salvar()) {
             msg = "Aluno Salvo com sucesso!";
         } else {
