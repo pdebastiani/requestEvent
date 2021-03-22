@@ -42,6 +42,7 @@
             <li><a class="link" href="../Views/consultaCafe.jsp">Consulta Espaços Café</a></li>
             <li><a class="link" href="../Views/consultaSala.jsp">Consulta Salas</a></li>
             <li><a class="link" href="../Views/consultaAluno.jsp">Consulta Alunos</a></li>
+            <li><a class="link" href="../Views/consultaAlunosPorEtapaSala.jsp">Consulta Alunos / Sala</a></li>
         </ul>
     </div>
 
@@ -55,8 +56,8 @@
             <table class="container6">
                 <thead>
                     <th>Sala</th>
-                    <th>Lotacao</th>
-                    <th>Coffe</th>
+                    <th>Lotação</th>
+                    <th>S.Café</th>
                     <th>Editar</th>
                     <th>Excluir</th>
                 </thead> 

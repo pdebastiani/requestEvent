@@ -1,7 +1,7 @@
 <%-- 
-    Document   : cadastroSala
+    Document   : consultaAluno
     Created on : 26/02/2021, 20:45:03
-    Author     : Paulo
+    Author     : Paulo Sergio Debastiani
 --%>
 
 <%@page import="java.sql.ResultSet"%>
@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Styles/estilos.css">
-    <title>cadastroSala</title>
+    <title>consultaAluno</title>
 </head>
 <body>
     
@@ -45,10 +45,11 @@
             <li><a class="link" href="../Views/consultaCafe.jsp">Consulta Espaços Café</a></li>
             <li><a class="link" href="../Views/consultaSala.jsp">Consulta Salas</a></li>
             <li><a class="link" href="../Views/consultaAluno.jsp">Consulta Alunos</a></li>
+            <li><a class="link" href="../Views/consultaAlunosPorEtapaSala.jsp">Consulta Alunos / Sala</a></li>
         </ul>
     </div>
 
-    <div class="col-6 col-s-9">     
+    <div class="col-9 col-s-9">     
         <h3>Listagem dos Alunos</h3>
         <% if (msg != "") {%>
         <p class="sucesso"><img src="../imagens/sucesso.png" width="50px" height="50px"/>
@@ -66,13 +67,13 @@
                 <tbody>
                    <% while (rs.next()) {%>
                         <tr>
-                            <td><%out.write(rs.getString("nomecompleto"));%></td>
-                            <td><%out.write(rs.getString("etapa1"));%></td>
-                            <td><%out.write(rs.getString("etapa2"));%></td>
+                            <td><%out.write(rs.getString("nomeCompleto"));%></td>
+                            <td><%out.write(rs.getString("etapa1ComCafe"));%></td>
+                            <td><%out.write(rs.getString("etapa2ComCafe"));%></td>
                             <td><%out.write("<a href=./cadastroEditaAluno.jsp?id=" + 
                                     rs.getString("id") + ">Editar</a>");%></td>   
                             <td><%out.write("<a href=../Controller/excluirAluno.jsp?id=" + 
-                                    rs.getString("id") + ">Excluir</a>");%></td>   
+                                    rs.getString("id") + ">Excluir</a>");%></td>  
                         </tr>
                     <%}%>
                 </tbody>

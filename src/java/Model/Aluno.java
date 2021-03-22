@@ -99,7 +99,7 @@ public class Aluno {
         return this;
     }
     
-    public List<Aluno> consultar() {
+    /*public List<Aluno> consultar() {
         List<Aluno> lista = new ArrayList<>();
         Connection con = Conexao.conectar();
         String sql = "select * from aluno;";
@@ -119,19 +119,34 @@ public class Aluno {
             Logger.getLogger(Aluno.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lista;
-    }
-        
-    public ResultSet consultarInner() {
+    }*/
+    
+    public ResultSet consultar(String pEtapa) {
         Connection con = Conexao.conectar();
-        String sql = "select a.id, a.nome || ' ' || a.sobrenome nomecompleto, " +
-                "(select s1.sala " +
-                "from sala s1 " +
-                "where a.idSala1 = s1.id) etapa1, " +
-                "(select s2.sala " +
-                "from sala s2 " +
-                "where a.idSala2 = s2.id) etapa2 " +
-                "from aluno a " +
-                "order by a.nome;";
+        String sql;
+        if (pEtapa.contains("a")) {
+            sql = "select a.nome || ' ' || a.sobrenome nomeCompleto, " +
+                        "(select s1.sala " +
+                        "from sala s1 " +
+                        "where a.idSala1 = s1.id) etapa1, " +
+                        "(select s2.sala " +
+                        "from sala s2 " +
+                        "where a.idSala2 = s2.id) etapa2 " +
+                    "from aluno a " +
+                    "group by a.idSala1, a.nome, a.sobrenome, a.idSala2 " +
+                    "order by a.idSala1, a.nome, a.sobrenome;";
+        } else {
+            sql = "select a.nome || ' ' || a.sobrenome nomeCompleto, " +
+                        "(select s1.sala " +
+                        "from sala s1 " +
+                        "where a.idSala1 = s1.id) etapa1, " +
+                        "(select s2.sala " +
+                        "from sala s2 " +
+                        "where a.idSala2 = s2.id) etapa2 " +
+                    "from aluno a " +
+                    "group by a.idSala2, a.nome, a.sobrenome, a.idSala1 " +
+                    "order by a.idSala2, a.nome, a.sobrenome;";
+        }
         ResultSet rs = null;
         try {
             PreparedStatement stm = con.prepareStatement(sql);
@@ -141,7 +156,32 @@ public class Aluno {
         }
         return rs;
     }
-
+        
+    public ResultSet consultarInner() {
+        Connection con = Conexao.conectar();
+        String sql = "select a.id, a.nome || ' ' || a.sobrenome nomeCompleto, " +
+                    "(select s1.sala || ' --> ' || (select c1.cafe " +
+                                                    "from cafe c1 " +
+                                                    "where s1.idcafe = c1.id) etapa1ComCafe " +
+                    "from sala s1 " +
+                    "where a.idSala1 = s1.id), " +
+                    "(select s2.sala || ' --> ' || (select c2.cafe " +
+                                                    "from cafe c2 " +
+                                                    "where s2.idcafe = c2.id) etapa2ComCafe " +
+                    "from sala s2 " +
+                    "where a.idSala2 = s2.id) " +
+                    "from aluno a " +
+                    "order by a.nome;";
+        ResultSet rs = null;
+        try {
+            PreparedStatement stm = con.prepareStatement(sql);
+            rs = stm.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(Aluno.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return rs;
+    }
+    
     public int getId() {
         return id;
     }

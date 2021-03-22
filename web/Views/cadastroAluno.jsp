@@ -36,6 +36,7 @@
             <li><a class="link" href="../Views/consultaCafe.jsp">Consulta Espaços Café</a></li>
             <li><a class="link" href="../Views/consultaSala.jsp">Consulta Salas</a></li>
             <li><a class="link" href="../Views/consultaAluno.jsp">Consulta Alunos</a></li>
+            <li><a class="link" href="../Views/consultaAlunosPorEtapaSala.jsp">Consulta Alunos / Sala</a></li>
         </ul>
     </div>
 
